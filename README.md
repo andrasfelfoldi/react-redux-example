@@ -1,1 +1,1 @@
-##Example project demonstrating the basic usage of React with Redux.
+# Example project demonstrating the basic usage of React with Redux.
