@@ -7,7 +7,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -27,18 +28,16 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Home</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/addmovie/">Add Movie</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/andrasfelfoldi/react-redux-example">GitHub</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
+            <NavbarBrand href="/">Home</NavbarBrand>
+            <NavbarBrand href="/addmovie/">Add Movie</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <NavLink href="https://github.com/andrasfelfoldi/react-redux-example">GitHub</NavLink>
+                </NavItem>
+              </Nav>
+            </Collapse>
         </Navbar>
       </div>
     );

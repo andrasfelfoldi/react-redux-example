@@ -5,12 +5,12 @@ export default class MovieTable extends React.Component {
 
     render() {
         return (
-            <Table>
+            <Table style={{maxWidth: '50rem', margin: '2rem auto' }}>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Title</th>
-                        <th>Release Date</th>
+                        <th>Year of Release</th>
                         <th>Rating</th>
                         <th></th>
                     </tr>
@@ -20,7 +20,7 @@ export default class MovieTable extends React.Component {
                         <tr>
                             <th scope="row">{index + 1}</th>
                             <td>{movie.title}</td>
-                            <td>{movie.releaseDate}</td>
+                            <td>{movie.releaseYear}</td>
                             <td>{movie.rating}</td>
                             <Button color="danger">Delete</Button>
                         </tr>
