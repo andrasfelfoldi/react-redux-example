@@ -4,7 +4,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink as Navlink
@@ -29,8 +28,8 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand><NavLink  to="/">Home</NavLink ></NavbarBrand>
-          <NavbarBrand><NavLink  to="/addmovie/">Add Movie</NavLink ></NavbarBrand>
+          <NavLink  to="/">Home</NavLink >
+          <NavLink  to="/addmovie/">Add Movie</NavLink >
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

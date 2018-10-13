@@ -1,7 +1,13 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
+import { connect } from 'react-redux'
+import { deleteMovieAction } from './../actions/movieActions';
 
-export default class MovieTable extends React.Component {
+class MovieTable extends React.Component {
+
+    deleteMovie=function(movie){
+
+    }
 
     render() {
         return (
@@ -22,7 +28,7 @@ export default class MovieTable extends React.Component {
                             <td>{movie.title}</td>
                             <td>{movie.releaseYear}</td>
                             <td>{movie.rating}</td>
-                            {/* <Button color="danger">Delete</Button> */}
+                            <td><Button color="danger" onClick={(movie) => this.deleteMovie(movie)}>Delete</Button></td>
                         </tr>
                     ))}
                 </tbody>
@@ -30,3 +36,17 @@ export default class MovieTable extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        // movies: state.movies
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteMovieDispatch: (movieId) => dispatch(deleteMovieAction(movieId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieTable);
