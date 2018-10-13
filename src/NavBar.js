@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -28,16 +29,16 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Home</NavbarBrand>
-            <NavbarBrand href="/addmovie/">Add Movie</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink href="https://github.com/andrasfelfoldi/react-redux-example">GitHub</NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
+          <NavbarBrand><Link to="/">Home</Link></NavbarBrand>
+          <NavbarBrand><Link to="/addmovie/">Add Movie</Link></NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="https://github.com/andrasfelfoldi/react-redux-example">GitHub</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
         </Navbar>
       </div>
     );
