@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { createMovieAction } from './../actions/movieActions';
 import { withRouter } from 'react-router-dom'
 
-
 class AddMovieForm extends React.Component {
     constructor(props){
         super(props);
@@ -14,6 +13,9 @@ class AddMovieForm extends React.Component {
         // this.onReleaseYearSelectionChanged=this.onReleaseYearSelectionChanged.bind(this);
         // this.onRatingSelectionChanged=this.onRatingSelectionChanged.bind(this);
     }
+
+    
+
 
     onTitleInputValueChanged= function(enteredValue){
         let newText=enteredValue.target.value.toString();
@@ -31,6 +33,7 @@ class AddMovieForm extends React.Component {
     onSubmitClicked= function(event){
         event.preventDefault();
         this.props.createMovie(this.state.enteredTitle, this.state.enteredReleaseYear, this.state.enteredRating);
+        this.props.history.push("/");
     }
   render() {
     let currentYear=new Date().getUTCFullYear();
@@ -87,4 +90,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddMovieForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddMovieForm));
