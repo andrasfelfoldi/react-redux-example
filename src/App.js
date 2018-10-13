@@ -7,6 +7,8 @@ import HomePage from './components/HomePage';
 import { store } from './store';
 import { Provider } from 'react-redux';
 
+window.store=store;
+
 class App extends Component {
   render() {
     return (

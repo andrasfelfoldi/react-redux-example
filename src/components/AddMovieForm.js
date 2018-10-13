@@ -2,15 +2,17 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux'
 import { createMovieAction } from './../actions/movieActions';
+import { withRouter } from 'react-router-dom'
+
 
 class AddMovieForm extends React.Component {
     constructor(props){
         super(props);
         this.state={enteredTitle: "", enteredReleaseYear: new Date().getUTCFullYear(), enteredRating: 5, isTitleValid: null}
 
-        this.onTitleInputValueChanged=this.onTitleInputValueChanged.bind(this);
-        this.onReleaseYearSelectionChanged=this.onReleaseYearSelectionChanged.bind(this);
-        this.onRatingSelectionChanged=this.onRatingSelectionChanged.bind(this);
+        // this.onTitleInputValueChanged=this.onTitleInputValueChanged.bind(this);
+        // this.onReleaseYearSelectionChanged=this.onReleaseYearSelectionChanged.bind(this);
+        // this.onRatingSelectionChanged=this.onRatingSelectionChanged.bind(this);
     }
 
     onTitleInputValueChanged= function(enteredValue){
@@ -26,7 +28,10 @@ class AddMovieForm extends React.Component {
     onRatingSelectionChanged= function(newSelection){
         this.setState({enteredRating: newSelection.target.value});
     }
-
+    onSubmitClicked= function(event){
+        event.preventDefault();
+        this.props.createMovie(this.state.enteredTitle, this.state.enteredReleaseYear, this.state.enteredRating);
+    }
   render() {
     let currentYear=new Date().getUTCFullYear();
     let yearOptions=[];
@@ -43,14 +48,15 @@ class AddMovieForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="exampleSelect">Year of Release</Label>
-          <Input type="select" name="select" id="exampleSelect" value={this.state.enteredReleaseYear} onChange={this.onReleaseYearSelectionChanged}>
+          <Input type="select" name="select" id="exampleSelect" value={this.state.enteredReleaseYear}
+            onChange={selection => this.onReleaseYearSelectionChanged(selection)}>
             {yearOptions}
           </Input>
         </FormGroup>
         <FormGroup>
           <Label for="exampleSelect">Rating</Label>
           <Input type="select" name="select" id="exampleSelect"
-            value={this.state.enteredRating} onChange={this.onRatingSelectionChanged}>
+            value={this.state.enteredRating} onChange={selection => this.onRatingSelectionChanged(selection)}>
             <option key={1}>1</option>
             <option key={2}>2</option>
             <option key={3}>3</option>
@@ -63,6 +69,7 @@ class AddMovieForm extends React.Component {
             <option key={10}>10</option>
           </Input>
         </FormGroup>
+        <Button color="success" onClick={(event) => this.onSubmitClicked(event)}>Add Movie</Button>
       </Form>
     );
   }
@@ -70,13 +77,13 @@ class AddMovieForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        movies: state.movies
+        // movies: state.movies
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteMovie: (movieId) => dispatch(createMovieAction(movieId))
+        createMovie: (title, releaseYear, rating) => dispatch(createMovieAction(title, releaseYear, rating))
     }
 }
 

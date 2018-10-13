@@ -17,12 +17,12 @@ export default class MovieTable extends React.Component {
                 </thead>
                 <tbody>
                     {this.props.movies.map((movie, index) => (
-                        <tr>
+                        <tr key={index}>
                             <th scope="row">{index + 1}</th>
                             <td>{movie.title}</td>
                             <td>{movie.releaseYear}</td>
                             <td>{movie.rating}</td>
-                            <Button color="danger">Delete</Button>
+                            {/* <Button color="danger">Delete</Button> */}
                         </tr>
                     ))}
                 </tbody>
