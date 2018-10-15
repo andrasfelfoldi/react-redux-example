@@ -2,11 +2,16 @@ import React from 'react';
 import { Table, Button } from 'reactstrap';
 import { connect } from 'react-redux'
 import { deleteMovieAction } from './../actions/movieActions';
+import { withRouter } from 'react-router-dom'
 
 class MovieTable extends React.Component {
 
     deleteMovie=function(movieId){
         this.props.deleteMovieDispatch(movieId);
+    }
+
+    navigateToEditMoviePage=function(movie){
+        this.props.history.push("/editmovie/" +movie.movieId);
     }
 
     render() {
@@ -23,7 +28,7 @@ class MovieTable extends React.Component {
                 </thead>
                 <tbody>
                     {this.props.movies.map((movie, index) => (
-                        <tr key={index}>
+                        <tr key={index} value={movie} onClick={() => this.navigateToEditMoviePage(movie)}>
                             <th scope="row">{index + 1}</th>
                             <td>{movie.title}</td>
                             <td>{movie.releaseYear}</td>
@@ -49,4 +54,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieTable);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieTable));

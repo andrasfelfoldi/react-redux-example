@@ -6,6 +6,7 @@ import AddMoviePage from './components/AddMoviePage';
 import HomePage from './components/HomePage';
 import { store } from './store';
 import { Provider } from 'react-redux';
+import EditMoviePage from './components/EditMoviePage';
 
 window.store = store;
 
@@ -22,6 +23,7 @@ class App extends Component {
               <Switch>
                 <Route path='/' exact component={HomePage} />
                 <Route path='/addmovie' component={AddMoviePage} />
+                <Route path='/editmovie/:movieId' component={EditMoviePage} />
               </Switch>
             </main>
           </div>

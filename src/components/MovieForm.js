@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux'
-import { createMovieAction } from './../actions/movieActions';
+import { createMovieAction } from '../actions/movieActions';
 import { withRouter } from 'react-router-dom'
 
-class AddMovieForm extends React.Component {
+class MovieForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { enteredTitle: "", enteredReleaseYear: new Date().getUTCFullYear(), enteredRating: 5, isTitleValid: null }
@@ -84,4 +84,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddMovieForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieForm));
