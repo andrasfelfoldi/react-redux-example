@@ -5,8 +5,8 @@ import { deleteMovieAction } from './../actions/movieActions';
 
 class MovieTable extends React.Component {
 
-    deleteMovie=function(movie){
-
+    deleteMovie=function(movieId){
+        this.props.deleteMovieDispatch(movieId);
     }
 
     render() {
@@ -28,7 +28,7 @@ class MovieTable extends React.Component {
                             <td>{movie.title}</td>
                             <td>{movie.releaseYear}</td>
                             <td>{movie.rating}</td>
-                            <td><Button color="danger" onClick={(movie) => this.deleteMovie(movie)}>Delete</Button></td>
+                            <td><Button color="danger" value={movie.movieId} onClick={() => this.deleteMovie(movie.movieId)}>Delete</Button></td>
                         </tr>
                     ))}
                 </tbody>

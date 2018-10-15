@@ -7,7 +7,7 @@ export default function movies(state = [], action) {
         case actions.EDIT_MOVIE:
             return state
         case actions.DELETE_MOVIE:
-            return state
+            return state.filter(movie => movie.movieId !== action.data.movieId);
         default:
             return state
     }
