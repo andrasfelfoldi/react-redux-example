@@ -5,7 +5,7 @@ export default function movies(state = [], action) {
         case actions.CREATE_MOVIE:
             return [...state, {...action.data }]
         case actions.EDIT_MOVIE:
-            return state
+            return [...state.filter(movie => movie.movieId !== action.data.movieId), {...action.data}]
         case actions.DELETE_MOVIE:
             return state.filter(movie => movie.movieId !== action.data.movieId);
         default:
