@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom'
 class MovieForm extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.location)
+
         this.state = { enteredTitle: "", enteredReleaseYear: new Date().getUTCFullYear(), enteredRating: 5, isTitleValid: null }
     }
 

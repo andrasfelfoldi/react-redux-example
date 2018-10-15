@@ -5,13 +5,15 @@ import { deleteMovieAction } from './../actions/movieActions';
 import { withRouter } from 'react-router-dom'
 
 class MovieTable extends React.Component {
-
     deleteMovie=function(movieId){
         this.props.deleteMovieDispatch(movieId);
     }
 
     navigateToEditMoviePage=function(movie){
-        this.props.history.push("/editmovie/" +movie.movieId);
+        this.props.history.push({
+            pathname: "/editmovie/",
+            search: '?movieId='+movie.movieId
+        });
     }
 
     render() {
