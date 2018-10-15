@@ -28,7 +28,7 @@ class MovieTable extends React.Component {
                 </thead>
                 <tbody>
                     {this.props.movies.map((movie, index) => (
-                        <tr key={index} value={movie} onClick={() => this.navigateToEditMoviePage(movie)}>
+                        <tr key={index} value={movie} onClick={() => this.navigateToEditMoviePage(movie)} style={{cursor: 'pointer'}}>
                             <th scope="row">{index + 1}</th>
                             <td>{movie.title}</td>
                             <td>{movie.releaseYear}</td>
