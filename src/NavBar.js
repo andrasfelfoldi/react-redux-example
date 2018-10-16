@@ -28,8 +28,8 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavLink  to="/">Home</NavLink >
-          <NavLink  to="/addmovie/">Add Movie</NavLink >
+          <NavLink  to="/" style={{color: "#333333", margin: "0px 10px"}}>Home</NavLink >
+          <NavLink  to="/addmovie/" style={{color: "#333333", margin: "0px 10px"}}>Add Movie</NavLink >
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

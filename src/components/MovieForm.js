@@ -1,15 +1,17 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux'
-import { createMovieAction } from '../actions/movieActions';
+import { createMovieAction, editMovieAction } from '../actions/movieActions';
 import { withRouter } from 'react-router-dom'
 
 class MovieForm extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.location)
-
-        this.state = { enteredTitle: "", enteredReleaseYear: new Date().getUTCFullYear(), enteredRating: 5, isTitleValid: null }
+        if(this.props.match.params.movieId){
+            this.state = { enteredTitle: this.props.movie.title, enteredReleaseYear: this.props.movie.releaseYear, enteredRating: this.props.movie.rating, isTitleValid: true }
+        }else{
+            this.state = { enteredTitle: "", enteredReleaseYear: new Date().getUTCFullYear(), enteredRating: 5, isTitleValid: null }
+        }
     }
 
     onTitleInputValueChanged = function (enteredValue) {
@@ -25,9 +27,21 @@ class MovieForm extends React.Component {
     onRatingSelectionChanged = function (newSelection) {
         this.setState({ enteredRating: newSelection.target.value });
     }
-    onSubmitClicked = function (event) {
+
+    onCreateClicked = function (event) {
         event.preventDefault();
         this.props.createMovie(this.state.enteredTitle, this.state.enteredReleaseYear, this.state.enteredRating);
+        this.props.history.push("/");
+    }
+
+    onEditClicked = function (event) {
+        event.preventDefault();
+        this.props.editMovie(this.props.movie.movieId, this.state.enteredTitle, this.state.enteredReleaseYear, this.state.enteredRating);
+        this.props.history.push("/");
+    }
+
+    onCancelClicked = function (event) {
+        event.preventDefault();
         this.props.history.push("/");
     }
 
@@ -68,21 +82,36 @@ class MovieForm extends React.Component {
                         <option key={10}>10</option>
                     </Input>
                 </FormGroup>
-                <Button color="success" onClick={(event) => this.onSubmitClicked(event)}>Add Movie</Button>
+                {this.props.match.params.movieId ? 
+                <div>
+                    <Button color="success" onClick={(event) => this.onEditClicked(event)} style={{'margin': '0px 5px'}}>Save Changes</Button>
+                    <Button color="secondary" onClick={(event) => this.onCancelClicked(event)} style={{'margin': '0px 5px'}}>Cancel</Button>
+                </div>
+                    : <Button color="success" onClick={(event) => this.onCreateClicked(event)}>Add Movie</Button>
+                }
             </Form>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        // movies: state.movies
+const mapStateToProps = (state, ownProps) => {
+    let movieIdParam = ownProps.match.params.movieId;
+    if(movieIdParam){
+        let movieYToEdit=state.movies.filter(movie => movie.movieId === movieIdParam)[0];//there should only be one match (at index 0)
+        return{
+            movie: movieYToEdit
+        }
+    }else{
+        return {
+            // movies: state.movies
+        }
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        createMovie: (title, releaseYear, rating) => dispatch(createMovieAction(title, releaseYear, rating))
+        createMovie: (title, releaseYear, rating) => dispatch(createMovieAction(title, releaseYear, rating)),
+        editMovie: (movieId, title, releaseYear, rating) => dispatch(editMovieAction(movieId, title, releaseYear, rating))
     }
 }
 

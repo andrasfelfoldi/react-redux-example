@@ -13,7 +13,7 @@ export function createMovieAction(title, releaseYear, rating) {
     }
 }
 
-export function editMovieAction( movieId, {title, releaseYear, rating}) {
+export function editMovieAction( movieId, title, releaseYear, rating) {
     return {
         type: actions.EDIT_MOVIE,
         data: {

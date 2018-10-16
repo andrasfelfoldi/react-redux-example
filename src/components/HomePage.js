@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MovieTable from './MovieTable';
 import { connect } from 'react-redux'
-import { deleteMovieAction } from './../actions/movieActions';
 
 class HomePage extends Component {
     render() {
@@ -17,10 +16,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        deleteMovie: (movieId) => dispatch(deleteMovieAction(movieId))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps)(HomePage);
