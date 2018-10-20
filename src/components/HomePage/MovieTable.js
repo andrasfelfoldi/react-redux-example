@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import { connect } from 'react-redux'
-import { deleteMovieAction } from './../actions/movieActions';
+import { deleteMovieAction } from '../../actions/movieActions';
 import { withRouter } from 'react-router-dom'
 
 class MovieTable extends React.Component {

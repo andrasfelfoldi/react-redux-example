@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from './NavBar';
+import NavBar from './components/NavBar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import AddMoviePage from './components/AddMoviePage';
-import HomePage from './components/HomePage';
+import AddMoviePage from './components/MovieFormPages/AddMoviePage';
+import HomePage from './components/HomePage/HomePage';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import EditMoviePage from './components/EditMoviePage';
+import EditMoviePage from './components/MovieFormPages/EditMoviePage';
 
 window.store = store;
 

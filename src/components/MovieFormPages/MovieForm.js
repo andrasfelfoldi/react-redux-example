@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux'
-import { createMovieAction, editMovieAction } from '../actions/movieActions';
+import { createMovieAction, editMovieAction } from '../../actions/movieActions';
 import { withRouter } from 'react-router-dom'
 
 class MovieForm extends React.Component {
